@@ -23,6 +23,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user = auth()->user();
+        $user->assignRole('user');
+        if($user->hasRole('user')){
+            $user->givePermissionTo('add post');
+        }
+
         return view('home');
     }
 }

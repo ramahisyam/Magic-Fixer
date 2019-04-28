@@ -64,6 +64,7 @@
         </style>
     </head>
     <body>
+        <div id="particles-js" style="width: 100%; height: 100%; position: fixed;"></div>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -81,19 +82,20 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    <img src="{{asset('images/logo-BE.png')}}" width="60px" height="60px">Magic Fixer
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                <h3>
+                    Magic Fixer adalah sebuah website untuk tracking <br>
+                    barang anda yang sedang di service. <br>
+                </h3>
             </div>
         </div>
     </body>
+    <script src="{{ asset('vendors/jquery/dist/jquery.js') }}"></script>
+    <script src="{{ asset('js/particles.js') }}"></script>
+    <script>
+        particlesJS.load('particles-js', "{{ asset('js/particlesjs-config.json') }}", function () {
+            console.log('callback - particles.js config loaded')
+        });
+    </script>
 </html>
