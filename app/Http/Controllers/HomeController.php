@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ItemCategory;
 
 class HomeController extends Controller
 {
@@ -24,11 +25,15 @@ class HomeController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $user->assignRole('user');
-        if($user->hasRole('user')){
-            $user->givePermissionTo('add post');
-        }
+        
+        if($user->hasRole('admin')) {
+            return view('admin.home');
+        } else {
+            $user->assignRole('user');
 
-        return view('home');
+            $categories = ItemCategory::all();
+
+            return view('user.home', compact('categories'));
+        }
     }
 }
