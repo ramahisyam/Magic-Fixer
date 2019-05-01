@@ -16,7 +16,32 @@
                     <div class="card-body">
                         <span>Pemilik : </span>{{ $item->user->name }}
                         <p>{{ $item->created_at->diffForHumans() }}</p>
-                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#detailModal">Detail</button>
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#detailModal{{ $item->id }}">Detail</button>
+                    </div>
+                </div>
+                <div class="modal fade" id="detailModal{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{ $item->name }}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <table>
+                                    <tr>
+                                        <td>Nama Pemilik : {{ $item->user->name }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kategori : {{ $item->category->name }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Keluhan : {{ $item->description }} </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             @endforeach

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ItemCategory;
+use App\Item;
 
 class HomeController extends Controller
 {
@@ -27,7 +28,13 @@ class HomeController extends Controller
         $user = auth()->user();
         
         if($user->hasRole('admin')) {
-            return view('admin.home');
+            $items = Item::latest()->get();
+
+            return view('admin.home', compact('items'));
+        } elseif ($user->hasRole('user')) {
+            $categories = ItemCategory::all();
+
+            return view('user.home', compact('categories'));
         } else {
             $user->assignRole('user');
 
