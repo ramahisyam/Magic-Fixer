@@ -3,10 +3,6 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <nav class="nav flex-column">
-            <a class="nav-link active" href="#">Dashboard</a>
-            <a class="nav-link disabled" href="#">Transaksi</a>
-        </nav>
         <div class="col-md-8">
             @foreach ($items as $item)
                 <br>
@@ -16,7 +12,7 @@
                     <div class="card-body">
                         <span>Pemilik : </span>{{ $item->user->name }}
                         <p>{{ $item->created_at->diffForHumans() }}</p>
-                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#detailModal{{ $item->id }}">Detail</button>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#detailModal{{ $item->id }}">Lacak Barang</button>
                     </div>
                 </div>
                 <div class="modal fade" id="detailModal{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
@@ -40,6 +36,15 @@
                                         <td>Keluhan : {{ $item->description }} </td>
                                     </tr>
                                 </table>
+                                <hr>
+                                <form class="form-group" method="post" action="">
+                                    @csrf
+                                    <input type="hidden" name="item_id" value="{{ $item->id }}">
+                                    <label for="">Masukkan proses barang</label>
+                                    <textarea name="description" class="form-control"></textarea>
+                                    <br/>
+                                    <button type="submit" class="btn btn-secondary btn-lg btn-block">Submit</button>
+                                </form>
                             </div>
                         </div>
                     </div>

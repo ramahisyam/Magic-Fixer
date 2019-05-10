@@ -4,18 +4,21 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            @foreach ($items as $item)
-                <br>
-                <div class="card">
-                    <div class="card-header">{{ $item->name }}</div>
+            <div class="card">
+                <div class="card-header">{{ $item->name }}</div>
 
-                    <div class="card-body">
-                        <span>Pemilik : </span>{{ $item->user->name }}
-                        <p>{{ $item->created_at->diffForHumans() }}</p>
-                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#detailModal">Detail</button>
-                    </div>
+                <div class="card-body">
+                    <form class="form-group" method="post" action="">
+                        @csrf
+                        <br/>
+                        <input type="hidden" name="item_id" value="{{ $item->id }}">
+                        <label for="">Masukkan proses barang</label>
+                        <textarea name="description" class="form-control"></textarea>
+                        <br/>
+                        <button type="submit" class="btn btn-secondary btn-lg btn-block">Submit</button>
+                    </form>
                 </div>
-            @endforeach
+            </div>
         </div>
     </div>
 </div>

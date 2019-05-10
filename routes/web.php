@@ -21,4 +21,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Route::get('/home', 'ItemController@index');
 Route::post('/home', 'ItemController@store')->name('item.store');
+Route::get('/home/{item}', 'ItemController@show')->name('item.show');
 

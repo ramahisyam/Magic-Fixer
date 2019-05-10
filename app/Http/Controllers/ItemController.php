@@ -24,8 +24,8 @@ class ItemController extends Controller
         
     }
 
-    public function show(Item $items)
+    public function show(Item $item)
     {
-        return view('admin.show', compact('items'));
+        return view('admin.show', compact('item'));
     }
 }
